@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration 
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+    <configuration>
+    
+        <typeAliases>
+            <typeAlias type="com.example.vo.MemberVO" alias="memberVO"/>
+            <typeAlias type="com.example.vo.Fir" alias="Fir"/>
+            <typeAlias type="com.example.vo.re" alias="re"/>
+            <typeAlias type="com.example.vo.Sec" alias="Sec"/>
+            <typeAlias type="com.example.vo.Thi" alias="Thi"/>
+            <typeAlias type="com.example.vo.Fou" alias="Fou"/>
+            <typeAlias type="com.example.vo.Fif" alias="Fif"/>
+        </typeAliases>
+        
+    </configuration>

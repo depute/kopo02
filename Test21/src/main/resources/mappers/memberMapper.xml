@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.example.mapper.memberMapper">
+ 
+    <!-- 
+        mybatis-config.xml의 typeAlias에 등록해두지 않았다면 
+        
+        <select id="selectMember" resultType="com.example.dto.MemberVO" >
+            SELECT ID, PW ,NAME FROM TEST
+        </select>
+        
+        이렇게 해야 한다.
+    -->
+    
+    <select id="selectMember" resultType="memberVO">
+        SELECT id,pw FROM mybatis;
+    </select>
+    <select id="selectFir" resultType="Fir">
+        SELECT id,title,date,viewcnt,wrt FROM s1 order by rootid desc,ord asc limit #{p}, 10;
+    </select>
+    <select id="selectcnt" resultType="int">
+        SELECT count(id) FROM s1;
+    </select>
+    <select id="selectre" resultType="re">
+    	select * from s1_re where rootid=#{rootid};
+    </select>
+    <insert id="insert" parameterType="com.example.vo.Sec">
+    	insert into s1(id,title,content,rootid,ord,p,wrt,pass) values (#{id},#{title},#{content},#{rootid},#{ord},#{p},#{wrt},#{pass});
+    </insert>
+    <select id="selectid" resultType="Thi">
+    	select id from s1 order by id desc limit 1;
+    </select>
+    <select id="selectview" resultType="Fou">
+    	select * from s1 where id=#{id};
+    </select>
+    <update id="updateview">
+    	update s1 set viewcnt=viewcnt+1 where id=#{id};
+    </update>
+    <update id="upd">
+    	update s1 set title=#{title},content=#{content},wrt=#{wrt},pass=#{pass} where id=#{id};
+    </update>
+    <delete id="del">
+    	delete from s1 where id=#{id};
+    </delete>
+    <select id="selectreid" resultType="int">
+    	select id from s1_re where rootid=#{rootid} order by id desc limit 1;
+    </select>
+    <insert id="insertre">
+    	insert into s1_re values(#{id},#{wrt},#{pass},#{content},#{rootid});
+    </insert>
+    <update id="updre">
+    	update s1_re set content=#{content},wrt=#{wrt},pass=#{pass} where rootid=#{rootid} and id=#{id};
+    </update>
+    <delete id="delre">
+    	delete from s1_re where rootid=#{rootid} and id=#{id};
+    </delete>
+    <select id="selectrev" resultType="Fif">
+    	select * from s1_re where rootid=#{rootid} and id=#{id};
+    </select>
+    <select id="selecttitle" resultType="Fir">
+    	SELECT id,title,date,viewcnt,wrt FROM s1 where title like CONCAT('%',#{con},'%') order by rootid desc,ord asc limit 0, 10;
+    </select>
+    <select id="selectcontent" resultType="Fir">
+    	SELECT id,title,date,viewcnt,wrt FROM s1 where title like CONCAT('%',#{con},'%') or content like CONCAT('%',#{con},'%') order by rootid desc,ord asc limit 0, 10;
+    </select>
+    <select id="selectwrt" resultType="Fir">
+    	SELECT id,title,date,viewcnt,wrt FROM s1 where wrt like CONCAT('%',#{con},'%') order by rootid desc,ord asc limit 0, 10;
+    </select>
+    <select id="selectcnttitle" resultType="int">
+        SELECT count(id) FROM s1 where title like concat('%',#{con},'%');
+    </select>
+    <select id="selectcntcontent" resultType="int">
+        SELECT count(id) FROM s1 where title like CONCAT('%',#{con},'%') or content like CONCAT('%',#{con},'%');
+    </select>
+    <select id="selectcntwrt" resultType="int">
+        SELECT count(id) FROM s1 where wrt like CONCAT('%',#{con},'%');
+    </select>
+</mapper>
